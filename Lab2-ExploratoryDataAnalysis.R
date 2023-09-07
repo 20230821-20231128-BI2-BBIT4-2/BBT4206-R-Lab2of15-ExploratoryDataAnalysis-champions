@@ -5,7 +5,7 @@
 # Course Name: Business Intelligence II
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
-# Lecturer: Allan Omondi
+# Lecturer: Allan Omondi trevor ngugi
 # Contact: aomondi [at] strathmore.edu
 #
 # Note: The lecture contains both theory and practice. This file forms part of
