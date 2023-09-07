@@ -2,7 +2,7 @@
 # Lab 2: Exploratory Data Analysis ----
 #
 # Course Code: BBT4206
-# Course Name: Business Intelligence II
+# Course Name: Business Intelligence II sem 2
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
 # Lecturer: Allan Omondi
@@ -17,7 +17,7 @@
 # *****************************************************************************
 
 # STEP 1. Install and use renv ----
-# **Initialization: Install and use renv ----
+# **Initialization:   Install and use renv ----
 # The renv package helps you create reproducible environments for your R
 # projects. This is helpful when working in teams because it makes your R
 # projects more isolated, portable and reproducible.
