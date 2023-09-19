@@ -92,7 +92,7 @@ require("languageserver")
 # https://cdn.scribbr.com/wp-content/uploads/2020/03/crop.data_.anova_.zip
 # Extract the "crop.data.csv" file into the data folder
 
-## STEP 3. Load the downloaded sample datasets ----
+## STEP 3. Load the downloaded sample datasets ------
 # Load the datasets
 iris_dataset <- read.csv("data/iris.data", header = FALSE,
                          stringsAsFactors = TRUE)
@@ -113,7 +113,9 @@ crop_dataset <- read_csv(
   col_types = cols(
     density = col_factor(levels = c("1", "2")),
     block = col_factor(levels = c("1", "2", "3", "4")),
+
     fertilizer = col_factor(levels = c("1", "2", "3")),
+
     yield = col_double()
   )
 )
@@ -121,6 +123,7 @@ View(crop_dataset)
 
 ## STEP 4. Load sample datasets that are provided as part of a package ----
 if (!is.element("mlbench", installed.packages()[, 1])) {
+  
   install.packages("mlbench", dependencies = TRUE)
 }
 require("mlbench")
