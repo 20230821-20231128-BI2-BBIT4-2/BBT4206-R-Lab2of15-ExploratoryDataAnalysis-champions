@@ -19,27 +19,23 @@ Business Intelligence Lab Submission Markdown
 
 <table>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
+<col style="width: 53%" />
+<col style="width: 46%" />
 </colgroup>
 <tbody>
 <tr class="odd">
 <td><strong>Student ID Numbers and Names of Group Members</strong></td>
-<td><p><em>&lt;list one student name, class group (just the letter; A,
-B, or C), and ID per line, e.g., 123456 - A - John Leposo; you should be
-between 2 and 5 members per group&gt;</em></p>
-<ol type="1">
-<li><p>126761 - Class Group - Name</p></li>
-<li><p>ID - Class Group - Name</p></li>
-<li><p>ID - Class Group - Name</p></li>
-<li><p>ID - Class Group - Name</p></li>
-<li><p>ID - Class Group - Name</p></li>
+<td><ol type="1">
+<li><p>133996 - B - Trevor Ngugi</p></li>
+<li><p>133996 - B - Immaculate Haayo</p></li>
+<li><p>135859 - B - Pauline Wairimu</p></li>
+<li><p>127701 - B - Clarice Gitonga</p></li>
+<li><p>126761 - B - Virginia Wanjiru</p></li>
 </ol></td>
 </tr>
 <tr class="even">
 <td><strong>GitHub Classroom Group Name</strong></td>
-<td><em>&lt;specify the name of the team you created on GitHub
-classroom&gt;</em></td>
+<td>Champions</td>
 </tr>
 <tr class="odd">
 <td><strong>Course Code</strong></td>
@@ -66,19 +62,12 @@ We start by installing all the required packages
 
 ``` r
 ## formatR - Required to format R code in the markdown ----
-if (!is.element("formatR", installed.packages()[, 1])) {
-  install.packages("formatR", dependencies = TRUE,
-                   repos="https://cloud.r-project.org")
-}
-require("formatR")
 
-
-## readr - Load datasets from CSV files ----
-if (!is.element("readr", installed.packages()[, 1])) {
-  install.packages("readr", dependencies = TRUE,
-                   repos="https://cloud.r-project.org")
+# Installed  renv package:
+if (!is.element("renv", installed.packages()[, 1])) {
+  install.packages("renv", dependencies = TRUE)
 }
-require("readr")
+require("renv")
 ```
 
 ------------------------------------------------------------------------
