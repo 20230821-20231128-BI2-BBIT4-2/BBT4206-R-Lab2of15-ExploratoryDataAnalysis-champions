@@ -56,8 +56,6 @@ require("renv")
 **Note:** the following "*KnitR*" options have been set as the defaults in this markdown:\
 `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
 
-More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
-
 ```{r setup, echo=TRUE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(
 	eval = TRUE,
@@ -86,171 +84,206 @@ knitr::opts_chunk$set(
 
 # Loading the Student Performance Dataset
 
-The 20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
+StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
 
 ```{r Load Dataset}
+
+## We loaded the dataset from a csv file
+
+if (!is.element("readr", installed.packages()[, 1])) {
+  install.packages("readr", dependencies = TRUE,
+                   repos="https://cloud.r-project.org")
+}
+require("readr")
+
+
+
 student_performance_dataset <-
   readr::read_csv(
-                  "../data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
-                  col_types =
-                  readr::cols(
-                              class_group =
-                              readr::col_factor(levels = c("A", "B", "C")),
-                              gender = readr::col_factor(levels = c("1", "0")),
-                              YOB = readr::col_date(format = "%Y"),
-                              regret_choosing_bi =
-                              readr::col_factor(levels = c("1", "0")),
-                              drop_bi_now =
-                              readr::col_factor(levels = c("1", "0")),
-                              motivator =
-                              readr::col_factor(levels = c("1", "0")),
-                              read_content_before_lecture =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              anticipate_test_questions =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              answer_rhetorical_questions =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              find_terms_I_do_not_know =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              copy_new_terms_in_reading_notebook =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              take_quizzes_and_use_results =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              reorganise_course_outline =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              write_down_important_points =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              space_out_revision =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              studying_in_study_group =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              schedule_appointments =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              goal_oriented =
-                              readr::col_factor(levels =
-                                                c("1", "0")),
-                              spaced_repetition =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              testing_and_active_recall =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              interleaving =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              categorizing =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              retrospective_timetable =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              cornell_notes =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4")),
-                              sq3r = readr::col_factor(levels =
-                                                       c("1", "2", "3", "4")),
-                              commute = readr::col_factor(levels =
-                                                          c("1", "2",
-                                                            "3", "4")),
-                              study_time = readr::col_factor(levels =
-                                                             c("1", "2",
-                                                               "3", "4")),
-                              repeats_since_Y1 = readr::col_integer(),
-                              paid_tuition = readr::col_factor(levels =
-                                                               c("0", "1")),
-                              free_tuition = readr::col_factor(levels =
-                                                               c("0", "1")),
-                              extra_curricular = readr::col_factor(levels =
-                                                                   c("0", "1")),
-                              sports_extra_curricular =
-                              readr::col_factor(levels = c("0", "1")),
-                              exercise_per_week = readr::col_factor(levels =
-                                                                    c("0", "1",
-                                                                      "2",
-                                                                      "3")),
-                              meditate = readr::col_factor(levels =
-                                                           c("0", "1",
-                                                             "2", "3")),
-                              pray = readr::col_factor(levels =
-                                                       c("0", "1",
-                                                         "2", "3")),
-                              internet = readr::col_factor(levels =
-                                                           c("0", "1")),
-                              laptop = readr::col_factor(levels = c("0", "1")),
-                              family_relationships =
-                              readr::col_factor(levels =
-                                                c("1", "2", "3", "4", "5")),
-                              friendships = readr::col_factor(levels =
-                                                              c("1", "2", "3",
-                                                                "4", "5")),
-                              romantic_relationships =
-                              readr::col_factor(levels =
-                                                c("0", "1", "2", "3", "4")),
-                              spiritual_wellnes =
-                              readr::col_factor(levels = c("1", "2", "3",
-                                                           "4", "5")),
-                              financial_wellness =
-                              readr::col_factor(levels = c("1", "2", "3",
-                                                           "4", "5")),
-                              health = readr::col_factor(levels = c("1", "2",
-                                                                    "3", "4",
-                                                                    "5")),
-                              day_out = readr::col_factor(levels = c("0", "1",
-                                                                     "2", "3")),
-                              night_out = readr::col_factor(levels = c("0",
-                                                                       "1", "2",
-                                                                       "3")),
-                              alcohol_or_narcotics =
-                              readr::col_factor(levels = c("0", "1", "2", "3")),
-                              mentor = readr::col_factor(levels = c("0", "1")),
-                              mentor_meetings = readr::col_factor(levels =
-                                                                  c("0", "1",
-                                                                    "2", "3")),
-                              `Attendance Waiver Granted: 1 = Yes, 0 = No` =
-                              readr::col_factor(levels = c("0", "1")),
-                              GRADE = readr::col_factor(levels =
-                                                        c("A", "B", "C", "D",
-                                                          "E"))),
-                  locale = readr::locale())
+    "C:/Users/Virginia/OneDrive - Strathmore University/Desktop/Business Intelligence/BBT4206-R-Lab2of15-ExploratoryDataAnalysis-champions/data/StudentPerformanceDataset.csv", 
+    col_types =
+      readr::cols(
+        class_group =
+          readr::col_factor(levels = c("A", "B", "C")),
+        gender = readr::col_factor(levels = c("1", "0")),
+        YOB = readr::col_date(format = "%Y"),
+        regret_choosing_bi =
+          readr::col_factor(levels = c("1", "0")),
+        drop_bi_now =
+          readr::col_factor(levels = c("1", "0")),
+        motivator =
+          readr::col_factor(levels = c("1", "0")),
+        read_content_before_lecture =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        anticipate_test_questions =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        answer_rhetorical_questions =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        find_terms_I_do_not_know =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        copy_new_terms_in_reading_notebook =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        take_quizzes_and_use_results =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        reorganise_course_outline =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        write_down_important_points =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        space_out_revision =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        studying_in_study_group =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        schedule_appointments =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        goal_oriented =
+          readr::col_factor(levels =
+                              c("1", "0")),
+        spaced_repetition =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        testing_and_active_recall =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        interleaving =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        categorizing =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        retrospective_timetable =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        cornell_notes =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4")),
+        sq3r = readr::col_factor(levels =
+                                   c("1", "2", "3", "4")),
+        commute = readr::col_factor(levels =
+                                      c("1", "2",
+                                        "3", "4")),
+        study_time = readr::col_factor(levels =
+                                         c("1", "2",
+                                           "3", "4")),
+        repeats_since_Y1 = readr::col_integer(),
+        paid_tuition = readr::col_factor(levels =
+                                           c("0", "1")),
+        free_tuition = readr::col_factor(levels =
+                                           c("0", "1")),
+        extra_curricular = readr::col_factor(levels =
+                                               c("0", "1")),
+        sports_extra_curricular =
+          readr::col_factor(levels = c("0", "1")),
+        exercise_per_week = readr::col_factor(levels =
+                                                c("0", "1",
+                                                  "2",
+                                                  "3")),
+        meditate = readr::col_factor(levels =
+                                       c("0", "1",
+                                         "2", "3")),
+        pray = readr::col_factor(levels =
+                                   c("0", "1",
+                                     "2", "3")),
+        internet = readr::col_factor(levels =
+                                       c("0", "1")),
+        laptop = readr::col_factor(levels = c("0", "1")),
+        family_relationships =
+          readr::col_factor(levels =
+                              c("1", "2", "3", "4", "5")),
+        friendships = readr::col_factor(levels =
+                                          c("1", "2", "3",
+                                            "4", "5")),
+        romantic_relationships =
+          readr::col_factor(levels =
+                              c("0", "1", "2", "3", "4")),
+        spiritual_wellnes =
+          readr::col_factor(levels = c("1", "2", "3",
+                                       "4", "5")),
+        financial_wellness =
+          readr::col_factor(levels = c("1", "2", "3",
+                                       "4", "5")),
+        health = readr::col_factor(levels = c("1", "2",
+                                              "3", "4",
+                                              "5")),
+        day_out = readr::col_factor(levels = c("0", "1",
+                                               "2", "3")),
+        night_out = readr::col_factor(levels = c("0",
+                                                 "1", "2",
+                                                 "3")),
+        alcohol_or_narcotics =
+          readr::col_factor(levels = c("0", "1", "2", "3")),
+        mentor = readr::col_factor(levels = c("0", "1")),
+        mentor_meetings = readr::col_factor(levels =
+                                              c("0", "1",
+                                                "2", "3")),
+        `Attendance Waiver Granted: 1 = Yes, 0 = No` =
+          readr::col_factor(levels = c("0", "1")),
+        GRADE = readr::col_factor(levels =
+                                    c("A", "B", "C", "D",
+                                      "E"))),
+    locale = readr::locale())
+
 ```
 
 ## Description of the Dataset
 
 We then display the number of observations and number of variables. We have 101 observations and 100 variables to work with.
 
-```{r Your Fourth Code Chunk}
+```{code to display the datasets dimensions}
 dim(student_performance_dataset)
 ```
 
-Next, we display the quartiles for each numeric variable[*... think of this process as **"storytelling using the data."** Tell us what is happening; tell us what you are discovering as you proceed with the markdown; walk us through your code step-by-step (a code walkthrough).*]{#highlight style="color: blue"}
+In this step, we identify the data types in the datasets which will help us in determining which visualization types are most appropriate to be used.
+
+## Identifying Data Types 
 
 ```{r Your Fifth Code Chunk}
-summary(student_performance_dataset)
+sapply(student_performance_dataset,class)
+
 ```
 
-# \<You can Provide Another Appropriate Title Here if you wish\>
+## Measures of Frequency
 
-Describe the code chunk here:
+In the code illustrated below will be checking the frequency of students who take down important points, read content before the lecture and schedule appointments to consult.
 
 ```{r Your Sixth Code Chunk}
-# Fill this with R related code that will be executed when the R markdown file
+student_density_freq <- student_performance_dataset$write_down_important_points
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
+
+student_density_freq <- student_performance_dataset$read_content_before_lecture
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
+
+student_density_freq <- student_performance_dataset$schedule_appointments
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
 ```
 
-## \<You Can Have a Sub-Title Here if you wish\>
+## Measure of Distribution
 
 ```{r Your Seventh Code Chunk}
-# Fill this with other R related code that will be executed when the R markdown
+summary(student_performance_dataset)
+
+
+sapply(student_performance_dataset[, 99], sd)
+sapply(student_performance_dataset[, 92], sd)
+sapply(student_performance_dataset[, 91], sd)
+sapply(student_performance_dataset[, 90], sd)
+sapply(student_performance_dataset[, c(99,92,91)], sd)
+
+
+
 ```
 
 ## \<You Can Have Another Sub-Title Here if you wish\>
