@@ -1,5 +1,5 @@
 # STEP 1. Install and use renv ----
-# **Initialization: Install and use renv ----
+# **Initialization:   Install and use renv ----
 # The renv package helps you create reproducible environments for your R
 # projects. This is helpful when working in teams because it makes your R
 # projects more isolated, portable and reproducible.
@@ -42,7 +42,7 @@ renv::init()
 
 
 library(readr)
-StudentPerformanceDataset <- read_csv("data/StudentPerformanceDataset.csv")
+StudentPerformanceDataset <- read_csv("data/StudentPerformanceDataset.csv")g
 View(StudentPerformanceDataset)
 
 # Dimensions ----
