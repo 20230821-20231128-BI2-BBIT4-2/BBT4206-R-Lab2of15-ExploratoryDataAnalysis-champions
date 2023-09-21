@@ -237,7 +237,7 @@ student_performance_dataset <-
 
 ## Description of the Dataset
 
-We then display the number of observations and number of variables. We have 101 observations and 100 variables to work with.
+We then display the number of observations and number of variables. We have 101 observations and 100 variables in our dataset.
 
 ```{code to display the datasets dimensions}
 dim(student_performance_dataset)

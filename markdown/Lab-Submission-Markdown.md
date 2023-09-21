@@ -168,7 +168,7 @@ student_performance_dataset <- readr::read_csv("C:/Users/Virginia/OneDrive - Str
 ## Description of the Dataset
 
 We then display the number of observations and number of variables. We
-have 101 observations and 100 variables to work with.
+have 101 observations and 100 variables in our dataset.
 
 ``` code
 dim(student_performance_dataset)
