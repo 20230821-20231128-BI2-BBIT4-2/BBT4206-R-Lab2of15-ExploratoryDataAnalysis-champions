@@ -2,7 +2,7 @@
 # Lab 2: Exploratory Data Analysis ----
 #
 # Course Code: BBT4206
-# Course Name: Business Intelligence II
+# Course Name: Business Intelligence II sem 2
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
 # Lecturer: Allan Omondi
@@ -17,7 +17,7 @@
 # *****************************************************************************
 
 # STEP 1. Install and use renv ----
-# **Initialization: Install and use renv ----
+# **Initialization:   Install and use renv ----
 # The renv package helps you create reproducible environments for your R
 # projects. This is helpful when working in teams because it makes your R
 # projects more isolated, portable and reproducible.
@@ -92,7 +92,7 @@ require("languageserver")
 # https://cdn.scribbr.com/wp-content/uploads/2020/03/crop.data_.anova_.zip
 # Extract the "crop.data.csv" file into the data folder
 
-## STEP 3. Load the downloaded sample datasets ----
+## STEP 3. Load the downloaded sample datasets ------
 # Load the datasets
 iris_dataset <- read.csv("data/iris.data", header = FALSE,
                          stringsAsFactors = TRUE)
@@ -113,7 +113,9 @@ crop_dataset <- read_csv(
   col_types = cols(
     density = col_factor(levels = c("1", "2")),
     block = col_factor(levels = c("1", "2", "3", "4")),
+
     fertilizer = col_factor(levels = c("1", "2", "3")),
+
     yield = col_double()
   )
 )
@@ -121,6 +123,7 @@ View(crop_dataset)
 
 ## STEP 4. Load sample datasets that are provided as part of a package ----
 if (!is.element("mlbench", installed.packages()[, 1])) {
+  
   install.packages("mlbench", dependencies = TRUE)
 }
 require("mlbench")
