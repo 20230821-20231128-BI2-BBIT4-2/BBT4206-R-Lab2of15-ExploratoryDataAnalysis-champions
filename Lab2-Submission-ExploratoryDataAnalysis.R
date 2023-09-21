@@ -42,7 +42,7 @@ renv::init()
 
 
 library(readr)
-StudentPerformanceDataset <- read_csv("data/StudentPerformanceDataset.csv")g
+StudentPerformanceDataset <- read_csv("data/StudentPerformanceDataset.csv")
 View(StudentPerformanceDataset)
 
 # Dimensions ----
