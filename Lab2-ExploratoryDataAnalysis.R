@@ -5,7 +5,7 @@
 # Course Name: Business Intelligence II sem 2
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
-# Lecturer: Allan Omondi
+# Lecturer: Allan Omondi 
 # Contact: aomondi [at] strathmore.edu
 #
 
@@ -54,7 +54,8 @@ renv::init()
 # This can also be configured using the RStudio GUI when you click the project
 # file, e.g., "BBT4206-R.Rproj" in the case of this project. Then
 # navigate to the "Environments" tab and select "Use renv with this project".
-
+.libPaths()
+lapply(.libPaths(), list.files)
 # As you continue to work on your project, you can install and upgrade
 # packages, using either:
 # install.packages() and update.packages or
@@ -185,6 +186,7 @@ sapply(PimaIndiansDiabetes, class)
 # Further reading: https://www.scribbr.com/statistics/one-way-anova/
 # Further reading: https://www.scribbr.com/statistics/two-way-anova/
 
+#is examinable
 # Understanding your data can lead to:
 # (i)	  Data cleaning: Removing bad data or imputing missing data.
 # (ii)	Data transformation: Reduce the skewness by applying the same function
