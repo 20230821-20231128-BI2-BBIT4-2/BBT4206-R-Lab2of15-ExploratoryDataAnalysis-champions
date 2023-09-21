@@ -154,3 +154,38 @@ student_performance_dataset <-
 # display the dimensions of your datasets:
 
 dim(student_performance_dataset)
+
+# Data Types ----
+## STEP 6. Identify the Data Types ----
+# Knowing the data types will help you to identify the most appropriate
+# visualization types and algorithms that can be applied. It can also help you
+# to identify the need to convert from categorical data (factors) to integers
+# or vice versa where necessary. Execute the following command to identify the
+# data types:
+sapply(student_performance_dataset, class)
+
+### STEP 7. Identify the number of instances that belong to each class. ----
+# It is more sensible to count categorical variables (factors or dimensions)
+# than numeric variables, e.g., counting the number of male and female
+# participants instead of counting the frequency of each participant’s height.
+student_density_freq <- student_performance_dataset$write_down_important_points
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
+
+student_density_freq <- student_performance_dataset$read_content_before_lecture
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
+
+student_density_freq <- student_performance_dataset$schedule_appointments
+cbind(frequency = table(student_density_freq),
+      percentage = prop.table(table(student_density_freq)) * 100)
+
+### STEP 9. Measure the distribution of the data for each variable ----
+summary(student_performance_dataset)
+
+
+sapply(student_performance_dataset[, 99], sd)
+sapply(student_performance_dataset[, 92], sd)
+sapply(student_performance_dataset[, 91], sd)
+sapply(student_performance_dataset[, 90], sd)
+sapply(student_performance_dataset[, c(99,92,91)], sd)

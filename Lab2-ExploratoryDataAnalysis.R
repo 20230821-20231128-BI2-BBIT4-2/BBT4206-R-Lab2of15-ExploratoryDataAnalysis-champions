@@ -287,7 +287,7 @@ sapply(PimaIndiansDiabetes[, 1:8], sd)
 sapply(BostonHousing[, -4], var)
 sapply(crop_dataset[, 4], var)
 sapply(iris_dataset[, 1:4], var)
-sapply(PimaIndiansDiabetes[, 1:8], var)
+sapply(PimaIndiansDiabetes[, -9], var)
 
 ### STEP 12. Measure the kurtosis of each variable ----
 # The Kurtosis informs you of how often outliers occur in the results.
