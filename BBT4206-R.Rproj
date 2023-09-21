@@ -13,5 +13,3 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 QuitChildProcessesOnExit: Yes
-
-SpellingDictionary: en_GB
