@@ -17,8 +17,13 @@ editor_options:
 
 |                                                   |                                                                                            |
 |---------------------------------------------------|--------------------------------------------------------------------------------------------|
-| **Student ID Numbers and Names of Group Members** | \<list one student name and ID per line; you should be between 2 and 5 members per group\> |
-| **BBIT 4.2 Group**                                | \<either group A, B, or C\>                                                                |
+| **Student ID Numbers and Names of Group Members** | \<133996 Trevor Ngugi
+                                                        126761 Virginia Wanjiru
+                                                        135851 Pauline Wairimu
+                                                        134111 Immaculate Haayo
+                                                        127707 Clarice Gitonga
+                                                        \> |
+| **BBIT 4.2 Group**                                |   \<  Group B\>                                                                |
 | **Course Code**                                   | BBT4206                                                                                    |
 | **Course Name**                                   | Business Intelligence II                                                                   |
 | **Program**                                       | Bachelor of Business Information Technology                                                |
