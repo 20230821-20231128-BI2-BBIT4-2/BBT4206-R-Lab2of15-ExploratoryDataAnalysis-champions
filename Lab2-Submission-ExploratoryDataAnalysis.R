@@ -184,8 +184,5 @@ cbind(frequency = table(student_density_freq),
 summary(student_performance_dataset)
 
 
-sapply(student_performance_dataset[, 99], sd)
-sapply(student_performance_dataset[, 92], sd)
-sapply(student_performance_dataset[, 91], sd)
-sapply(student_performance_dataset[, 90], sd)
+
 sapply(student_performance_dataset[, c(99,92,91)], sd)
