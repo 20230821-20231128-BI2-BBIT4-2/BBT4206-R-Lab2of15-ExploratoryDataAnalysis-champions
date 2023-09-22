@@ -1,106 +1,21 @@
----
-title: "Business Intelligence Lab Submission Markdown"
-author: "<Specify your group name here>"
-date: "<Specify the date when you submitted the lab>"
-output:
-  github_document: 
-    toc: yes
-    toc_depth: 4
-    fig_width: 6
-    fig_height: 4
-    df_print: default
-editor_options:
-  chunk_output_type: console
----
-
-# Student Details
-
-+---------------------------------------------------+---------------------------------------------+
-| **Student ID Numbers and Names of Group Members** | 1.  133996 - B - Trevor Ngugi               |
-|                                                   |                                             |
-|                                                   | 2.  133996 - B - Immaculate Haayo           |
-|                                                   |                                             |
-|                                                   | 3.  135859 - B - Pauline Wairimu            |
-|                                                   |                                             |
-|                                                   | 4.  127701 - B - Clarice Gitonga            |
-|                                                   |                                             |
-|                                                   | 5.  126761 - B - Virginia Wanjiru           |
-+---------------------------------------------------+---------------------------------------------+
-| **GitHub Classroom Group Name**                   | Champions                                   |
-+---------------------------------------------------+---------------------------------------------+
-| **Course Code**                                   | BBT4206                                     |
-+---------------------------------------------------+---------------------------------------------+
-| **Course Name**                                   | Business Intelligence II                    |
-+---------------------------------------------------+---------------------------------------------+
-| **Program**                                       | Bachelor of Business Information Technology |
-+---------------------------------------------------+---------------------------------------------+
-| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023  |
-+---------------------------------------------------+---------------------------------------------+
-
-# Setup Chunk
-
-We start by installing all the required packages
-
-```{r Install Packages, echo=TRUE, message=FALSE, warning=FALSE}
 ## formatR - Required to format R code in the markdown ----
-
-# Installed  renv package:
-if (!is.element("renv", installed.packages()[, 1])) {
-  install.packages("renv", dependencies = TRUE)
+if (!is.element("formatR", installed.packages()[, 1])) {
+  install.packages("formatR", dependencies = TRUE,
+                   repos="https://cloud.r-project.org")
 }
-require("renv")
-```
+require("formatR")
 
-------------------------------------------------------------------------
 
-**Note:** the following "*KnitR*" options have been set as the defaults in this markdown:\
-`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
-
-```{r setup, echo=TRUE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(
-	eval = TRUE,
-	echo = TRUE,
-	warning = FALSE,
-	collapse = FALSE,
-	tidy = TRUE
-)
-```
-
-------------------------------------------------------------------------
-
-**Note:** the following "*R Markdown*" options have been set as the defaults in this markdown:
-
-> output:\
-> \
-> github_document:\
-> toc: yes\
-> toc_depth: 4\
-> fig_width: 6\
-> fig_height: 4\
-> df_print: default\
-> \
-> editor_options:\
-> chunk_output_type: console
-
-# Loading the Student Performance Dataset
-
-StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
-
-```{r Load Dataset}
-
-## We loaded the dataset from a csv file
-
+## readr - Load datasets from CSV files ----
 if (!is.element("readr", installed.packages()[, 1])) {
   install.packages("readr", dependencies = TRUE,
                    repos="https://cloud.r-project.org")
 }
 require("readr")
 
-
-
 student_performance_dataset <-
   readr::read_csv(
-    "C:/Users/Virginia/OneDrive - Strathmore University/Desktop/Business Intelligence/BBT4206-R-Lab2of15-ExploratoryDataAnalysis-champions/data/StudentPerformanceDataset.csv", 
+    "data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
     col_types =
       readr::cols(
         class_group =
@@ -233,30 +148,26 @@ student_performance_dataset <-
                                       "E"))),
     locale = readr::locale())
 
-```
+## STEP 5. Preview the Loaded Datasets ----
+# Dimensions refer to the number of observations (rows) and the number of
+# attributes/variables/features (columns). Execute the following commands to
+# display the dimensions of your datasets:
 
-## Description of the Dataset
-
-We then display the number of observations and number of variables. We have 101 observations and 100 variables in our dataset.
-
-```{code to display the datasets dimensions}
 dim(student_performance_dataset)
-```
 
-In this step, we identify the data types in the datasets which will help us in determining which visualization types are most appropriate to be used.
+# Data Types ----
+## STEP 6. Identify the Data Types ----
+# Knowing the data types will help you to identify the most appropriate
+# visualization types and algorithms that can be applied. It can also help you
+# to identify the need to convert from categorical data (factors) to integers
+# or vice versa where necessary. Execute the following command to identify the
+# data types:
+sapply(student_performance_dataset, class)
 
-## Identifying Data Types 
-
-```{r Your Fifth Code Chunk}
-sapply(student_performance_dataset,class)
-
-```
-
-## Measures of Frequency
-
-In the code illustrated below will be checking the frequency of students who take down important points, read content before the lecture and schedule appointments to consult.
-
-```{r Your Sixth Code Chunk}
+### STEP 7. Identify the number of instances that belong to each class. ----
+# It is more sensible to count categorical variables (factors or dimensions)
+# than numeric variables, e.g., counting the number of male and female
+# participants instead of counting the frequency of each participant’s height.
 student_density_freq <- student_performance_dataset$write_down_important_points
 cbind(frequency = table(student_density_freq),
       percentage = prop.table(table(student_density_freq)) * 100)
@@ -268,11 +179,8 @@ cbind(frequency = table(student_density_freq),
 student_density_freq <- student_performance_dataset$schedule_appointments
 cbind(frequency = table(student_density_freq),
       percentage = prop.table(table(student_density_freq)) * 100)
-```
 
-## Measure of Distribution
-
-```{r Your Seventh Code Chunk}
+### STEP 9. Measure the distribution of the data for each variable ----
 summary(student_performance_dataset)
 
 
@@ -281,15 +189,3 @@ sapply(student_performance_dataset[, 92], sd)
 sapply(student_performance_dataset[, 91], sd)
 sapply(student_performance_dataset[, 90], sd)
 sapply(student_performance_dataset[, c(99,92,91)], sd)
-
-
-
-```
-
-## \<You Can Have Another Sub-Title Here if you wish\>
-
-```{r Your Eighth Code Chunk}
-# Fill this with other R related code that will be executed when the R markdown
-```
-
-**etc.** as per the lab submission requirements. Be neat and communicate in a clear and logical manner.
