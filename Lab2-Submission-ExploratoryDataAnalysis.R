@@ -183,6 +183,173 @@ cbind(frequency = table(student_density_freq),
 ### STEP 9. Measure the distribution of the data for each variable ----
 summary(student_performance_dataset)
 
+### STEP 10. Measure the standard deviation of each variable ----
+# Measuring the variability in the dataset is important because the amount of
+# variability determines how well you can generalize results from the sample
+# dataset to a new observation in the population.
+
+# Low variability is ideal because it means that you can better predict
+# information about the population based on sample data.High variability means
+# that the values are less consistent, thus making it harder to make
+# predictions.
+
+sapply(student_performance_dataset[, c(97,78,79,81,82,86,91,92,96,99)], sd)
+
+
+### STEP 11. Measure the variance of each variable ----
+sapply(student_performance_dataset[, c(97,78,79,81,82,86,91,92,96,99)], var)
+
+### STEP 12. Measure the kurtosis of each variable ----
+# The Kurtosis informs you of how often outliers occur in the results.
+
+# There are different formulas for calculating kurtosis.
+# Specifying “type = 2” allows us to use the 2nd formula which is the same
+# kurtosis formula used in SPSS and SAS. More details about any function can be
+# obtained by searching the R help knowledge base. The knowledge base says:
+
+# In “type = 2” (used in SPSS and SAS):
+# 1.	Kurtosis < 3 implies a low number of outliers
+# 2.	Kurtosis = 3 implies a medium number of outliers
+# 3.	Kurtosis > 3 implies a high number of outliers
+
+if (!is.element("e1071", installed.packages()[, 1])) {
+  install.packages("e1071", dependencies = TRUE)
+}
+require("e1071")
+
+# In “type = 2” (used in SPSS and SAS):
+# 1.	Kurtosis < 3 implies a low number of outliers
+# 2.	Kurtosis = 3 implies a medium number of outliers
+# 3.	Kurtosis > 3 implies a high number of outliers
+
+
+sapply(student_performance_dataset[,c(97,78,79,81,82,86,91,92,96,99)],  kurtosis, type = 2)
+
+## STEP 14. Measure the covariance between variables ----
+# Note that the covariance and the correlation are computed for numeric values
+# only, not categorical values.
+# only, not categorical values.
+
+student_performance_dataset_cov <- cov(student_performance_dataset[,c(97,78,79,81,82,86,91,92,96,99),])
+View(student_performance_dataset_cov)
+
+## STEP 15. Measure the correlation between variables ----
+student_performance_dataset_cor <- cor(student_performance_dataset[, c(97,78,79,81,82,86,91,92,96,99),])
+View(student_performance_dataset_cor)
+
+# Inferential Statistics ----
+
+## STEP 16. Perform ANOVA on the “student_performance_dataset” dataset ----
+# ANOVA (Analysis of Variance) is a statistical test used to estimate how a
+# quantitative dependent variable changes according to the levels of one or
+# more categorical independent variables.
+
+# The null hypothesis (H0) of the ANOVA is that
+# “there is no difference in means”, and
+# the alternative hypothesis (Ha) is that
+# “the means are different from one another”.
+
+# Dependent variable:	TOTAL= Coursework TOTAL + EXAM(100%)
+# Independent variables: studying_in_study_group
+
+# One-Way ANOVA can be used to test the effect of the romantic_relationships on
+# TOTAL
+
+student_performance_dataset_one_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)`   ~ studying_in_study_group, data = student_performance_dataset)
+summary(student_performance_dataset_one_way_anova)
+
+sapply(student_performance_dataset, class)
+
+# We can also have a situation where the TOTAL depends not only on
+# space out revision but also on the studying in study group. A two-way ANOVA
+# can then be used to confirm this. Execute the following for a two-way ANOVA
+# (two independent variables):
+
+student_performance_dataset_additive_two_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)` ~ studying_in_study_group + space_out_revision, # nolint
+                                           data = student_performance_dataset)
+summary(student_performance_dataset_additive_two_way_anova)
+
+
+# Specifying a (+) between the two independent
+# variables (studying_in_study_group + space_out_revision) implies that they have 
+# an additive effect.
+
+# Execute the following to perform a two-way ANOVA with the assumption that
+# fertilizer and density have an interaction effect:
+
+student_performance_dataset_interactive_two_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)` ~ studying_in_study_group * space_out_revision, # nolint
+                                              data = student_performance_dataset)
+summary(student_performance_dataset_interactive_two_way_anova)
+
+### STEP 18. Create Box and Whisker Plots for Each Numeric Attribute ----
+# Box and whisker plots are useful in understanding the distribution of data.
+
+# Execute the following code to create box and whisker plots for the
+# “BostonHousing” dataset:
+# This considers the last 3 attributes which are numeric. The fourth attribute
+# in the dataset is of the type “factor”, i.e., categorical.
+
+
+boxplot(student_performance_dataset[, 96], main = names(student_performance_dataset)[96])
+
+### STEP 19. Create Bar Plots for Each Categorical Attribute ----
+# Categorical attributes (factors) can also be visualized. This is done using a
+# bar chart to give an idea of the proportion of instances that belong to each
+# category.
+
+# The features (attributes) in the “crop_dataset” dataset are:
+# 1.	studying_in_study_group
+# 2.	TOTAL= Coursework TOTAL + EXAM(100%)
+
+# Execute the following to create a bar plot for the categorical attributes
+# 96 in the “student_performance_dataset” dataset:
+
+barplot(table(student_performance_dataset[, 96]), main = names(student_performance_dataset)[96])
+
+### STEP 20. Create a Missingness Map to Identify Missing Data ----
+# Some machine learning algorithms cannot handle missing data. A missingness
+# map (also known as a missing plot) can be used to get an idea of the amount
+# missing data in the dataset. The x-axis of the missingness map shows the
+# attributes of the dataset whereas the y-axis shows the instances in the
+# dataset.
+# Horizontal lines indicate missing data for an instance whereas vertical lines
+# indicate missing data for an attribute. The missingness map requires the
+# “Amelia” package.
+
+# Execute the following to create a map to identify the missing data in each
+# dataset:
+if (!is.element("Amelia", installed.packages()[, 1])) {
+  install.packages("Amelia", dependencies = TRUE)
+}
+require("Amelia")
+
+missmap(student_performance_dataset, col = c("red", "grey"), legend = TRUE)
+
+## Multivariate Plots ----
+
+### STEP 21. Create a Correlation Plot ----
+# Correlation plots can be used to get an idea of which attributes change
+# together. The function “corrplot()” found in the package “corrplot” is
+# required to perform this. The larger the dot in the correlation plot, the
+# larger the correlation. Blue represents a positive correlation whereas red
+# represents a negative correlation.
+
+# Execute the following to create correlation plots for the datasets
+# loaded :
+if (!is.element("corrplot", installed.packages()[, 1])) {
+  install.packages("corrplot", dependencies = TRUE)
+}
+require("corrplot")
+corrplot(cor(student_performance_dataset[, 96:97]), method = "circle")
+
+# Alternatively, the 'ggcorrplot::ggcorrplot()' function can be used to plot a
+# more visually appealing plot.
+# The code below shows how to install a package in R:
+if (!is.element("ggcorrplot", installed.packages()[, 1])) {
+  install.packages("ggcorrplot", dependencies = TRUE)
+}
+require("ggcorrplot")
+ggcorrplot(cor(student_performance_dataset[, 96:97]))
 
 
 
