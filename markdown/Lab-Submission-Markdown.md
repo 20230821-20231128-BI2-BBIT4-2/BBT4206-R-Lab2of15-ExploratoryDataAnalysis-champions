@@ -1,7 +1,7 @@
 Business Intelligence Lab Submission Markdown
 ================
-<Specify your group name here>
-<Specify the date when you submitted the lab>
+<Champions>
+\<22/09/2023\>
 
 - [Student Details](#student-details)
 - [Setup Chunk](#setup-chunk)
@@ -11,8 +11,25 @@ Business Intelligence Lab Submission Markdown
   - [Identifying Data Types](#identifying-data-types)
   - [Measures of Frequency](#measures-of-frequency)
   - [Measure of Distribution](#measure-of-distribution)
-  - [\<You Can Have Another Sub-Title Here if you
-    wish\>](#you-can-have-another-sub-title-here-if-you-wish)
+  - [Measure the standard deviation of each
+    variable](#measure-the-standard-deviation-of-each-variable)
+  - [Measure the variance of each
+    variable](#measure-the-variance-of-each-variable)
+  - [Measure the kurtosis of each
+    variable](#measure-the-kurtosis-of-each-variable)
+  - [Measure the covariance between
+    variables](#measure-the-covariance-between-variables)
+  - [Measure the correlation between
+    variables](#measure-the-correlation-between-variables)
+  - [Perform ANOVA on the “student_performance_dataset”
+    dataset](#perform-anova-on-the-student_performance_dataset-dataset)
+  - [Create Box and Whisker Plots for each Numeric
+    attribute](#create-box-and-whisker-plots-for-each-numeric-attribute)
+  - [Create Bar Plots for each Categorical
+    Attribute](#create-bar-plots-for-each-categorical-attribute)
+  - [Create a Missingness Map to Identify Missing
+    Data](#create-a-missingness-map-to-identify-missing-data)
+  - [Create a Correlation Plot](#create-a-correlation-plot)
 
 # Student Details
 
@@ -120,7 +137,7 @@ require("readr")
     ## Loading required package: readr
 
 ``` r
-student_performance_dataset <- readr::read_csv("C:/Users/Virginia/OneDrive - Strathmore University/Desktop/Business Intelligence/BBT4206-R-Lab2of15-ExploratoryDataAnalysis-champions/data/StudentPerformanceDataset.csv",
+student_performance_dataset <- readr::read_csv("C:/Users/Pauline Wang'ombe/Downloads/4.2/BUSINESS INTELLIGENCE 2/BBT4206-R-Lab2of15-ExploratoryDataAnalysis-champions/data/StudentPerformanceDataset.csv",
     col_types = readr::cols(class_group = readr::col_factor(levels = c("A", "B",
         "C")), gender = readr::col_factor(levels = c("1", "0")), YOB = readr::col_date(format = "%Y"),
         regret_choosing_bi = readr::col_factor(levels = c("1", "0")), drop_bi_now = readr::col_factor(levels = c("1",
@@ -174,11 +191,11 @@ have 101 observations and 100 variables in our dataset.
 dim(student_performance_dataset)
 ```
 
+## Identifying Data Types
+
 In this step, we identify the data types in the datasets which will help
 us in determining which visualization types are most appropriate to be
 used.
-
-## Identifying Data Types
 
 ``` r
 sapply(student_performance_dataset, class)
@@ -328,7 +345,7 @@ sapply(student_performance_dataset, class)
     ##                                                                                                                                                                                                                                                                                     "numeric" 
     ##                                                                                                                                                                                                                                                      C - 12. The recordings of online classes 
     ##                                                                                                                                                                                                                                                                                     "numeric" 
-    ##                                                                                                                                                                                                     D - 1. \r\nWrite two things you like about the teaching and learning in this unit so far. 
+    ##                                                                                                                                                                                                       D - 1. \nWrite two things you like about the teaching and learning in this unit so far. 
     ##                                                                                                                                                                                                                                                                                   "character" 
     ##                                                                                                                                                          D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester) 
     ##                                                                                                                                                                                                                                                                                   "character" 
@@ -431,6 +448,9 @@ cbind(frequency = table(student_density_freq), percentage = prop.table(table(stu
     ## 5         3   2.970297
 
 ## Measure of Distribution
+
+In the code below we are measuring the distribution of the data for each
+variable
 
 ``` r
 summary(student_performance_dataset)
@@ -708,14 +728,14 @@ summary(student_performance_dataset)
     ##  3rd Qu.:5.00                            
     ##  Max.   :5.00                            
     ##  NA's   :1                               
-    ##  D - 1. \r\nWrite two things you like about the teaching and learning in this unit so far.
-    ##  Length:101                                                                               
-    ##  Class :character                                                                         
-    ##  Mode  :character                                                                         
-    ##                                                                                           
-    ##                                                                                           
-    ##                                                                                           
-    ##                                                                                           
+    ##  D - 1. \nWrite two things you like about the teaching and learning in this unit so far.
+    ##  Length:101                                                                             
+    ##  Class :character                                                                       
+    ##  Mode  :character                                                                       
+    ##                                                                                         
+    ##                                                                                         
+    ##                                                                                         
+    ##                                                                                         
     ##  D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)
     ##  Length:101                                                                                                                          
     ##  Class :character                                                                                                                    
@@ -853,48 +873,276 @@ summary(student_performance_dataset)
     ##  Max.   :87.72                                
     ## 
 
-``` r
-sapply(student_performance_dataset[, 99], sd)
-```
+## Measure the standard deviation of each variable
 
-    ## TOTAL = Coursework TOTAL + EXAM (100%) 
-    ##                               15.72533
+We chose the variables below because they are numeric.
 
 ``` r
-sapply(student_performance_dataset[, 92], sd)
+sapply(student_performance_dataset[, c(97, 78, 79, 81, 82, 86, 91, 92, 96, 99)],
+    sd)
 ```
 
-    ## Lab Work (7%) x/25 x 100 
-    ##                 19.30313
+    ##                    Coursework TOTAL: x/40 (40%) 
+    ##                                        6.224008 
+    ##                Project: Section 1-4: (20%) x/10 
+    ##                                        2.101804 
+    ##               Project: Section 5-11: (50%) x/10 
+    ##                                        2.789028 
+    ##                Project: (10%): x/30 x 100 TOTAL 
+    ##                                       20.151743 
+    ##         Quiz 1 on Concept 1 (Introduction) x/32 
+    ##                                        6.505277 
+    ## Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL 
+    ##                                       16.493880 
+    ##            Lab 5 - Chart JS Dashboard Setup x/5 
+    ##                                        2.332720 
+    ##                        Lab Work (7%) x/25 x 100 
+    ##                                       19.303127 
+    ##                          Absenteeism Percentage 
+    ##                                        9.088680 
+    ##          TOTAL = Coursework TOTAL + EXAM (100%) 
+    ##                                       15.725329
+
+## Measure the variance of each variable
+
+We chose the variables below because they are numeric.
 
 ``` r
-sapply(student_performance_dataset[, 91], sd)
+sapply(student_performance_dataset[, c(97, 78, 79, 81, 82, 86, 91, 92, 96, 99)],
+    var)
 ```
 
-    ## Lab 5 - Chart JS Dashboard Setup x/5 
-    ##                              2.33272
+    ##                    Coursework TOTAL: x/40 (40%) 
+    ##                                       38.738270 
+    ##                Project: Section 1-4: (20%) x/10 
+    ##                                        4.417580 
+    ##               Project: Section 5-11: (50%) x/10 
+    ##                                        7.778679 
+    ##                Project: (10%): x/30 x 100 TOTAL 
+    ##                                      406.092737 
+    ##         Quiz 1 on Concept 1 (Introduction) x/32 
+    ##                                       42.318630 
+    ## Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL 
+    ##                                      272.048065 
+    ##            Lab 5 - Chart JS Dashboard Setup x/5 
+    ##                                        5.441584 
+    ##                        Lab Work (7%) x/25 x 100 
+    ##                                      372.610704 
+    ##                          Absenteeism Percentage 
+    ##                                       82.604097 
+    ##          TOTAL = Coursework TOTAL + EXAM (100%) 
+    ##                                      247.285987
+
+## Measure the kurtosis of each variable
+
+The first code is used to install the e1071 package for kurtosis and the
+second code informs us how often the outliers occur in the results
 
 ``` r
-sapply(student_performance_dataset[, 90], sd)
+if (!is.element("e1071", installed.packages()[, 1])) {
+    install.packages("e1071", dependencies = TRUE)
+}
+require("e1071")
 ```
 
-    ## Lab 4 - 2.h. - (Linear Discriminant Analysis) x/5 
-    ##                                                NA
+    ## Loading required package: e1071
 
 ``` r
-sapply(student_performance_dataset[, c(99, 92, 91)], sd)
+sapply(student_performance_dataset[, c(97, 78, 79, 81, 82, 86, 91, 92, 96, 99)],
+    kurtosis, type = 2)
 ```
 
-    ## TOTAL = Coursework TOTAL + EXAM (100%)               Lab Work (7%) x/25 x 100 
-    ##                               15.72533                               19.30313 
-    ##   Lab 5 - Chart JS Dashboard Setup x/5 
-    ##                                2.33272
+    ##                    Coursework TOTAL: x/40 (40%) 
+    ##                                      -0.2366599 
+    ##                Project: Section 1-4: (20%) x/10 
+    ##                                       6.9285459 
+    ##               Project: Section 5-11: (50%) x/10 
+    ##                                       0.5384696 
+    ##                Project: (10%): x/30 x 100 TOTAL 
+    ##                                       2.3625295 
+    ##         Quiz 1 on Concept 1 (Introduction) x/32 
+    ##                                      -0.1258283 
+    ## Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL 
+    ##                                      -0.4980983 
+    ##            Lab 5 - Chart JS Dashboard Setup x/5 
+    ##                                      -1.3932784 
+    ##                        Lab Work (7%) x/25 x 100 
+    ##                                       1.3619252 
+    ##                          Absenteeism Percentage 
+    ##                                       1.3250056 
+    ##          TOTAL = Coursework TOTAL + EXAM (100%) 
+    ##                                       0.3814857
 
-## \<You Can Have Another Sub-Title Here if you wish\>
+## Measure the covariance between variables
+
+Most of our variables are positive hence the covariance is positive
+which means that they are moving in the same direction
 
 ``` r
-# Fill this with other R related code that will be executed when the R markdown
+student_performance_dataset_cov <- cov(student_performance_dataset[, c(97, 78, 79,
+    81, 82, 86, 91, 92, 96, 99), ])
+View(student_performance_dataset_cov)
 ```
+
+## Measure the correlation between variables
+
+Most of our values are 0.xxx positive or negative which implies little
+or relationship between the variables
+
+``` r
+student_performance_dataset_cor <- cor(student_performance_dataset[, c(97, 78, 79,
+    81, 82, 86, 91, 92, 96, 99), ])
+View(student_performance_dataset_cor)
+```
+
+## Perform ANOVA on the “student_performance_dataset” dataset
+
+One-Way ANOVA can be used to test the effect of studying_in_study_group
+variable on TOTAL
+
+``` r
+student_performance_dataset_one_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)` ~
+    studying_in_study_group, data = student_performance_dataset)
+summary(student_performance_dataset_one_way_anova)
+```
+
+    ##                         Df Sum Sq Mean Sq F value Pr(>F)
+    ## studying_in_study_group  4    914   228.6   0.921  0.455
+    ## Residuals               96  23814   248.1
+
+We can also have a situation where the TOTAL depends not only on
+space_out_revision but also on the studying_in_study_group variables. A
+two-way ANOVA can be used to confirm this.
+
+``` r
+student_performance_dataset_additive_two_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)` ~ studying_in_study_group + space_out_revision, # nolint
+                                           data = student_performance_dataset)
+summary(student_performance_dataset_additive_two_way_anova)
+```
+
+    ##                         Df Sum Sq Mean Sq F value Pr(>F)
+    ## studying_in_study_group  4    914   228.6   0.956  0.436
+    ## space_out_revision       4   1821   455.3   1.905  0.116
+    ## Residuals               92  21993   239.1
+
+Specifying a (+) between the two independent variables
+(studying_in_study_group + space_out_revision)implies that they have an
+additive effect
+
+``` r
+student_performance_dataset_interactive_two_way_anova <- aov(`TOTAL = Coursework TOTAL + EXAM (100%)` ~ studying_in_study_group * space_out_revision, # nolint
+                                              data = student_performance_dataset)
+summary(student_performance_dataset_interactive_two_way_anova)
+```
+
+    ##                                            Df Sum Sq Mean Sq F value Pr(>F)  
+    ## studying_in_study_group                     4    914   228.6   1.014 0.4050  
+    ## space_out_revision                          4   1821   455.3   2.021 0.0993 .
+    ## studying_in_study_group:space_out_revision 11   3742   340.2   1.510 0.1440  
+    ## Residuals                                  81  18251   225.3                 
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+## Create Box and Whisker Plots for each Numeric attribute
+
+We used Box and Whisker Plots to show whether a distribution is skewed
+or not and if there are outliers
+
+``` r
+boxplot(student_performance_dataset[, 96], main = names(student_performance_dataset)[96])
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Sixteenth%20Code%20Chunk-1.png)<!-- -->
+
+## Create Bar Plots for each Categorical Attribute
+
+We used a Bar Chart to give an idea of the proportion of instances that
+belong to each category
+
+``` r
+barplot(table(student_performance_dataset[, 96]), main = names(student_performance_dataset)[96])
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Seventeenth%20Code%20Chunk-1.png)<!-- -->
+
+## Create a Missingness Map to Identify Missing Data
+
+We used a Missingness Map to get an idea of the amount missing data in
+the dataset. The x-axis of the missingness map shows the attributes of
+the dataset whereas the y-axis shows the instances in the
+dataset.Horizontal lines indicate missing data for an instance whereas
+vertical lines indicate missing data for an attribute. The missingness
+map requires the “Amelia” package
+
+``` r
+if (!is.element("Amelia", installed.packages()[, 1])) {
+    install.packages("Amelia", dependencies = TRUE)
+}
+require("Amelia")
+```
+
+    ## Loading required package: Amelia
+
+    ## Loading required package: Rcpp
+
+    ## ## 
+    ## ## Amelia II: Multiple Imputation
+    ## ## (Version 1.8.1, built: 2022-11-18)
+    ## ## Copyright (C) 2005-2023 James Honaker, Gary King and Matthew Blackwell
+    ## ## Refer to http://gking.harvard.edu/amelia/ for more information
+    ## ##
+
+``` r
+missmap(student_performance_dataset, col = c("red", "grey"), legend = TRUE)
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Eightteenth%20Code%20Chunk-1.png)<!-- -->
+
+## Create a Correlation Plot
+
+We used a Correlation Plot to get an idea of which attributes change
+together.The function “corrplot()” found in the package “corrplot” is
+required to perform this. The larger the dot in the correlation plot,
+the larger the correlation. Blue represents a positive correlation
+whereas red represents a negative correlation
+
+``` r
+if (!is.element("corrplot", installed.packages()[, 1])) {
+    install.packages("corrplot", dependencies = TRUE)
+}
+require("corrplot")
+```
+
+    ## Loading required package: corrplot
+
+    ## corrplot 0.92 loaded
+
+``` r
+corrplot(cor(student_performance_dataset[, 96:97]), method = "circle")
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20Nineteenth%20Code%20Chunk-1.png)<!-- -->
+
+Alternatively, the ‘ggcorrplot::ggcorrplot()’ function can be used to
+plot a more visually appealing plot. The code below shows how to install
+a package in R:
+
+``` r
+if (!is.element("ggcorrplot", installed.packages()[, 1])) {
+    install.packages("ggcorrplot", dependencies = TRUE)
+}
+require("ggcorrplot")
+```
+
+    ## Loading required package: ggcorrplot
+
+    ## Loading required package: ggplot2
+
+``` r
+ggcorrplot(cor(student_performance_dataset[, 96:97]))
+```
+
+![](Lab-Submission-Markdown_files/figure-gfm/Your%20twenthieth%20Code%20Chunk-1.png)<!-- -->
 
 **etc.** as per the lab submission requirements. Be neat and communicate
 in a clear and logical manner.
