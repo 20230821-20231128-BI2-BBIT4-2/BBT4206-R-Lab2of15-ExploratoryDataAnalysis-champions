@@ -1,6 +1,6 @@
 ---
 title: "Business Intelligence Lab Submission Markdown"
-author: "<Specify your name here>"
+author: "<Immaculate Juma Haayo>"
 date: "<Specify the date when you submitted the lab>"
 output:
   github_document: 
@@ -18,7 +18,7 @@ editor_options:
 |                                                   |                                                                                            |
 |---------------------------------------------------|--------------------------------------------------------------------------------------------|
 | **Student ID Numbers and Names of Group Members** | \<list one student name and ID per line; you should be between 2 and 5 members per group\> |
-| **BBIT 4.2 Group**                                | \<either group A, B, or C\>                                                                |
+| **BBIT 4.2 Group**                                | \<B\>                                                                |
 | **Course Code**                                   | BBT4206                                                                                    |
 | **Course Name**                                   | Business Intelligence II                                                                   |
 | **Program**                                       | Bachelor of Business Information Technology                                                |

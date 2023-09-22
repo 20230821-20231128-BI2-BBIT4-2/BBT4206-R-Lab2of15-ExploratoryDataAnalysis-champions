@@ -94,7 +94,7 @@ require("languageserver")
 
 ## STEP 3. Load the downloaded sample datasets ----
 # Load the datasets
-iris_dataset <- read.csv("data/iris.data", header = FALSE,
+ iris_dataset <- read.csv("data/iris.data", header = FALSE,
                          stringsAsFactors = TRUE)
 
 # The following code (optional) can be used to name the attributes in the
@@ -318,7 +318,7 @@ sapply(PimaIndiansDiabetes[, 1:8],  kurtosis, type = 2)
 
 # 1.	Skewness between -0.4 and 0.4 (inclusive) implies that there is no skew
 # in the distribution of results; the distribution of results is symmetrical;
-# it is a normal distribution.
+# it is a normal distribution:Gaussian distribution
 # 2.	Skewness above 0.4 implies a positive skew; a right-skewed distribution.
 # 3.	Skewness below -0.4 implies a negative skew; a left-skewed distribution.
 
