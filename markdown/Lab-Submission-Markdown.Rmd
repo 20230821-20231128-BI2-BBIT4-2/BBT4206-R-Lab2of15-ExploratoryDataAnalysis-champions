@@ -1,10 +1,6 @@
 ---
 title: "Business Intelligence Lab Submission Markdown"
-<<<<<<< HEAD
-author: "<Immaculate Juma Haayo>"
-=======
 author: "<Specify your group name here>"
->>>>>>> b1614d902918d13fa5d4125934cac98b9aa0f097
 date: "<Specify the date when you submitted the lab>"
 output:
   github_document: 
@@ -19,16 +15,6 @@ editor_options:
 
 # Student Details
 
-<<<<<<< HEAD
-|                                                   |                                                                                            |
-|---------------------------------------------------|--------------------------------------------------------------------------------------------|
-| **Student ID Numbers and Names of Group Members** | \<list one student name and ID per line; you should be between 2 and 5 members per group\> |
-| **BBIT 4.2 Group**                                | \<B\>                                                                |
-| **Course Code**                                   | BBT4206                                                                                    |
-| **Course Name**                                   | Business Intelligence II                                                                   |
-| **Program**                                       | Bachelor of Business Information Technology                                                |
-| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                 |
-=======
 +---------------------------------------------------+---------------------------------------------+
 | **Student ID Numbers and Names of Group Members** | 1.  133996 - B - Trevor Ngugi               |
 |                                                   |                                             |
@@ -50,7 +36,6 @@ editor_options:
 +---------------------------------------------------+---------------------------------------------+
 | **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023  |
 +---------------------------------------------------+---------------------------------------------+
->>>>>>> b1614d902918d13fa5d4125934cac98b9aa0f097
 
 # Setup Chunk
 
