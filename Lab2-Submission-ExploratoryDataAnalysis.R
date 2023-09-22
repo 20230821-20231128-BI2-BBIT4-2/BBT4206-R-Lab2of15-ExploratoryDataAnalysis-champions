@@ -185,4 +185,4 @@ summary(student_performance_dataset)
 
 
 
-sapply(student_performance_dataset[, c(99,92,91)], sd)
+
