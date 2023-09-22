@@ -46,6 +46,9 @@ require("renv")
 # Select option 1 to restore the project from the lockfile
 renv::init()
 
+.libPaths()
+lapply(.libPaths(), list.files)
+
 # This will set up a project library, containing all the packages you are
 # currently using. The packages (and all the metadata needed to reinstall
 # them) are recorded into a lockfile, renv.lock, and a .Rprofile ensures that
@@ -75,7 +78,7 @@ renv::init()
 # recorded in the lockfile:
 renv::restore()
 
-# One of the packages required to use R in VS Code is the "languageserver"
+y# One of the packages required to use R in VS Code is the "languageserver"
 # package. It can be installed manually as follows if you are not using the
 # renv::restore() command.
 if (!is.element("languageserver", installed.packages()[, 1])) {
