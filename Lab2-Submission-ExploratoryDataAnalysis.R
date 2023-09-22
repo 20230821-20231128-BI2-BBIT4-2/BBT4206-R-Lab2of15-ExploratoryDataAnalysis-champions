@@ -183,10 +183,6 @@ cbind(frequency = table(student_density_freq),
 ### STEP 9. Measure the distribution of the data for each variable ----
 summary(student_performance_dataset)
 
-### STEP 10. Measure the standard deviation of each variable ----
-# Measuring the variability in the dataset is important because the amount of
-# variability determines how well you can generalize results from the sample
-# dataset to a new observation in the population.
 
 # Low variability is ideal because it means that you can better predict
 # information about the population based on sample data.High variability means
