@@ -2,12 +2,13 @@
 # Lab 2: Exploratory Data Analysis ----
 #
 # Course Code: BBT4206
-# Course Name: Business Intelligence II
+# Course Name: Business Intelligence II sem 2
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
-# Lecturer: Allan Omondi
+# Lecturer: Allan Omondi 
 # Contact: aomondi [at] strathmore.edu
 #
+
 # Note: The lecture contains both theory and practice. This file forms part of
 #       the practice. It has required lab work submissions that are graded for
 #       coursework marks.
@@ -17,7 +18,7 @@
 # *****************************************************************************
 
 # STEP 1. Install and use renv ----
-# **Initialization: Install and use renv ----
+# **Initialization:   Install and use renv ----
 # The renv package helps you create reproducible environments for your R
 # projects. This is helpful when working in teams because it makes your R
 # projects more isolated, portable and reproducible.
@@ -53,7 +54,8 @@ renv::init()
 # This can also be configured using the RStudio GUI when you click the project
 # file, e.g., "BBT4206-R.Rproj" in the case of this project. Then
 # navigate to the "Environments" tab and select "Use renv with this project".
-
+.libPaths()
+lapply(.libPaths(), list.files)
 # As you continue to work on your project, you can install and upgrade
 # packages, using either:
 # install.packages() and update.packages or
@@ -61,7 +63,7 @@ renv::init()
 
 # You can also clean up a project by removing unused packages using the
 # following command: renv::clean()
-
+ 
 # After you have confirmed that your code works as expected, use
 # renv::snapshot() to record the packages and their
 # sources in the lockfile.
@@ -92,7 +94,7 @@ require("languageserver")
 # https://cdn.scribbr.com/wp-content/uploads/2020/03/crop.data_.anova_.zip
 # Extract the "crop.data.csv" file into the data folder
 
-## STEP 3. Load the downloaded sample datasets ----
+## STEP 3. Load the downloaded sample datasets ------
 # Load the datasets
  iris_dataset <- read.csv("data/iris.data", header = FALSE,
                          stringsAsFactors = TRUE)
@@ -113,7 +115,9 @@ crop_dataset <- read_csv(
   col_types = cols(
     density = col_factor(levels = c("1", "2")),
     block = col_factor(levels = c("1", "2", "3", "4")),
+
     fertilizer = col_factor(levels = c("1", "2", "3")),
+
     yield = col_double()
   )
 )
@@ -121,6 +125,7 @@ View(crop_dataset)
 
 ## STEP 4. Load sample datasets that are provided as part of a package ----
 if (!is.element("mlbench", installed.packages()[, 1])) {
+  
   install.packages("mlbench", dependencies = TRUE)
 }
 require("mlbench")
@@ -181,6 +186,7 @@ sapply(PimaIndiansDiabetes, class)
 # Further reading: https://www.scribbr.com/statistics/one-way-anova/
 # Further reading: https://www.scribbr.com/statistics/two-way-anova/
 
+#is examinable
 # Understanding your data can lead to:
 # (i)	  Data cleaning: Removing bad data or imputing missing data.
 # (ii)	Data transformation: Reduce the skewness by applying the same function
@@ -285,7 +291,7 @@ sapply(PimaIndiansDiabetes[, 1:8], sd)
 sapply(BostonHousing[, -4], var)
 sapply(crop_dataset[, 4], var)
 sapply(iris_dataset[, 1:4], var)
-sapply(PimaIndiansDiabetes[, 1:8], var)
+sapply(PimaIndiansDiabetes[, -9], var)
 
 ### STEP 12. Measure the kurtosis of each variable ----
 # The Kurtosis informs you of how often outliers occur in the results.
