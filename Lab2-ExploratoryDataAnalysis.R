@@ -46,6 +46,9 @@ require("renv")
 # Select option 1 to restore the project from the lockfile
 renv::init()
 
+.libPaths()
+lapply(.libPaths(), list.files)
+
 # This will set up a project library, containing all the packages you are
 # currently using. The packages (and all the metadata needed to reinstall
 # them) are recorded into a lockfile, renv.lock, and a .Rprofile ensures that
@@ -76,7 +79,7 @@ lapply(.libPaths(), list.files)
 # recorded in the lockfile:
 renv::restore()
 
-# One of the packages required to use R in VS Code is the "languageserver"
+y# One of the packages required to use R in VS Code is the "languageserver"
 # package. It can be installed manually as follows if you are not using the
 # renv::restore() command.
 if (!is.element("languageserver", installed.packages()[, 1])) {
@@ -96,7 +99,7 @@ require("languageserver")
 
 ## STEP 3. Load the downloaded sample datasets ------
 # Load the datasets
-iris_dataset <- read.csv("data/iris.data", header = FALSE,
+ iris_dataset <- read.csv("data/iris.data", header = FALSE,
                          stringsAsFactors = TRUE)
 
 # The following code (optional) can be used to name the attributes in the
@@ -324,7 +327,7 @@ sapply(PimaIndiansDiabetes[, 1:8],  kurtosis, type = 2)
 
 # 1.	Skewness between -0.4 and 0.4 (inclusive) implies that there is no skew
 # in the distribution of results; the distribution of results is symmetrical;
-# it is a normal distribution.
+# it is a normal distribution:Gaussian distribution
 # 2.	Skewness above 0.4 implies a positive skew; a right-skewed distribution.
 # 3.	Skewness below -0.4 implies a negative skew; a left-skewed distribution.
 
