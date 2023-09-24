@@ -1,7 +1,7 @@
 ---
 title: "Business Intelligence Lab Submission Markdown"
-author: "<Specify your group name here>"
-date: "<Specify the date when you submitted the lab>"
+author: "<Champions>"
+date: "<22/9/2023>"
 output:
   github_document: 
     toc: yes
@@ -18,11 +18,11 @@ editor_options:
 +---------------------------------------------------+---------------------------------------------+
 | **Student ID Numbers and Names of Group Members** | 1.  133996 - B - Trevor Ngugi               |
 |                                                   |                                             |
-|                                                   | 2.  133996 - B - Immaculate Haayo           |
+|                                                   | 2.  134111 - B - Immaculate Haayo           |
 |                                                   |                                             |
 |                                                   | 3.  135859 - B - Pauline Wairimu            |
 |                                                   |                                             |
-|                                                   | 4.  127701 - B - Clarice Gitonga            |
+|                                                   | 4.  127707 - B - Clarice Gitonga            |
 |                                                   |                                             |
 |                                                   | 5.  126761 - B - Virginia Wanjiru           |
 +---------------------------------------------------+---------------------------------------------+
@@ -245,7 +245,7 @@ dim(student_performance_dataset)
 
 In this step, we identify the data types in the datasets which will help us in determining which visualization types are most appropriate to be used.
 
-## Identifying Data Types 
+## Identifying Data Types
 
 ```{r Your Fifth Code Chunk}
 sapply(student_performance_dataset,class)
@@ -273,7 +273,7 @@ cbind(frequency = table(student_density_freq),
 ## Measure of Distribution
 
 ```{r Your Seventh Code Chunk}
-summary(student_performance_dataset)
+
 
 
 sapply(student_performance_dataset[, 99], sd)
