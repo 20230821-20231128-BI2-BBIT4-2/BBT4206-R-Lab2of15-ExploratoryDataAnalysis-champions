@@ -18,7 +18,7 @@ editor_options:
 +---------------------------------------------------+---------------------------------------------+
 | **Student ID Numbers and Names of Group Members** | 1.  133996 - B - Trevor Ngugi               |
 |                                                   |                                             |
-|                                                   | 2.  133996 - B - Immaculate Haayo           |
+|                                                   | 2.  134111 - B - Immaculate Haayo           |
 |                                                   |                                             |
 |                                                   | 3.  135859 - B - Pauline Wairimu            |
 |                                                   |                                             |
