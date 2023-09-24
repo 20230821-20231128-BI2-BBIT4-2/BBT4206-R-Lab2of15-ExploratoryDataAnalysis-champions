@@ -43,9 +43,9 @@ Business Intelligence Lab Submission Markdown
 <td><strong>Student ID Numbers and Names of Group Members</strong></td>
 <td><ol type="1">
 <li><p>133996 - B - Trevor Ngugi</p></li>
-<li><p>133996 - B - Immaculate Haayo</p></li>
+<li><p>134111 - B - Immaculate Haayo</p></li>
 <li><p>135859 - B - Pauline Wairimu</p></li>
-<li><p>127701 - B - Clarice Gitonga</p></li>
+<li><p>127707 - B - Clarice Gitonga</p></li>
 <li><p>126761 - B - Virginia Wanjiru</p></li>
 </ol></td>
 </tr>
